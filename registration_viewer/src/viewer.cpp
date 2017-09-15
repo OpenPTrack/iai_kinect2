@@ -50,6 +50,8 @@
 
 #include <kinect2_definitions.h>
 
+using namespace std;
+
 class Receiver
 {
 public:

@@ -28,6 +28,7 @@
 #include <sys/stat.h>
 
 #include <opencv2/opencv.hpp>
+#include <opencv2/core/version.hpp>
 
 #include <ros/ros.h>
 #include <ros/spinner.h>
@@ -684,9 +685,15 @@ private:
     std::cout << "Distortion Coeeficients Ir:" << std::endl << distortionIr << std::endl << std::endl;
 
     std::cout << "calibrating Color and Ir extrinsics..." << std::endl;
+#if CV_VERSION_MAJOR >= 3
+    error = cv::stereoCalibrate(pointsBoard, pointsIr, pointsColor, cameraMatrixIr, distortionIr, cameraMatrixColor, distortionColor, sizeColor,
+                                rotation, translation, essential, fundamental,cv::CALIB_FIX_INTRINSIC,
+                                termCriteria);
+#else
     error = cv::stereoCalibrate(pointsBoard, pointsIr, pointsColor, cameraMatrixIr, distortionIr, cameraMatrixColor, distortionColor, sizeColor,
                                 rotation, translation, essential, fundamental, termCriteria,
                                 cv::CALIB_FIX_INTRINSIC);
+#endif
     std::cout << "error: " << error << std::endl << std::endl;
 
     std::cout << "Rotation:" << std::endl << rotation << std::endl;
