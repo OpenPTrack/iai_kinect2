@@ -70,12 +70,10 @@ add_custom_target(additional_files_${PROJECT_NAME}
   ${PROJECT_SOURCE_DIR}/../README.md
 )
 
-# ubuntu 16.04 if do not install cuda 8.0 ,we will not found CL/cl.cpp,so we add our's copy at last
 include_directories(include
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIR}
   ${freenect2_INCLUDE_DIRS}
-  include/internal
 )
 
 if(K2_USE_OPENCL_REGISTRATION)
