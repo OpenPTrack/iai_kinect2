@@ -687,7 +687,7 @@ private:
     std::cout << "calibrating Color and Ir extrinsics..." << std::endl;
 #if CV_MAJOR_VERSION >= 3
     error = cv::stereoCalibrate(pointsBoard, pointsIr, pointsColor, cameraMatrixIr, distortionIr, cameraMatrixColor, distortionColor, sizeColor,
-                                rotation, translation, essential, fundamental,cv::CALIB_FIX_INTRINSIC,
+                                rotation, translation, essential, fundamental,cv::CALIB_FIX_INTRINSIC | cv::CV_CALIB_USE_INTRINSIC_GUESS,
                                 termCriteria);
 #else
     error = cv::stereoCalibrate(pointsBoard, pointsIr, pointsColor, cameraMatrixIr, distortionIr, cameraMatrixColor, distortionColor, sizeColor,
