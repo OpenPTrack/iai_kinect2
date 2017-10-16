@@ -676,7 +676,11 @@ private:
       std::cerr << "not the same size!" << std::endl;
       return;
     }
+#if CV_MAJOR_VERSION >= 3
+    const cv::TermCriteria termCriteria(cv::TermCriteria::COUNT + cv::TermCriteria::EPS, 180, DBL_EPSILON);
+#else
     const cv::TermCriteria termCriteria(cv::TermCriteria::COUNT + cv::TermCriteria::EPS, 50, DBL_EPSILON);
+#endif
     double error;
 
     std::cout << "Camera Matrix Color:" << std::endl << cameraMatrixColor << std::endl;
