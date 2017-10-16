@@ -1,8 +1,18 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(kinect2_bridge)
+SET(CMAKE_BUILD_TYPE RelWithDebInfo)
 
-option(K2_USE_OPENCL_REGISTRATION "Use OpenCL implementation of the depth registration"       ON)
-option(K2_USE_OPENCL_PIPELINE     "Use OpenCL implementation of libfreenect2 packet pipeline" ON)
+# additional cmake modules
+LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
+find_package(OpenCL)
+
+if(OPENCL_FOUND)
+  option(K2_USE_OPENCL_REGISTRATION "Use OpenCL implementation of the depth registration"       ON)
+  option(K2_USE_OPENCL_PIPELINE     "Use OpenCL implementation of libfreenect2 packet pipeline" ON)
+else()
+  option(K2_USE_OPENCL_REGISTRATION "Use OpenCL implementation of the depth registration"       OFF)
+  option(K2_USE_OPENCL_PIPELINE     "Use OpenCL implementation of libfreenect2 packet pipeline" OFF)
+endif()
 option(K2_USE_TIFF_COMRESSION     "Use TIFF for depth/ir compression instead of PNG."         ON)
 set(K2_MIN_WORKER_THREADS 2 CACHE STRING "Minimum number of worker threads")
 

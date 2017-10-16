@@ -69,10 +69,13 @@ include_directories(include
 )
 
 add_executable(viewer src/viewer.cpp)
+
+#for Nvidiva TX2 must add libdrm
 target_link_libraries(viewer
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
   ${PCL_LIBRARIES}
+  drm
 )
 
 #############
