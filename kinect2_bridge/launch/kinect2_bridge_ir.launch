@@ -13,7 +13,6 @@
     <param name="sensor_id" value="$(arg sensor_id)" type="str" />
   </node>
 
-  <!-- point cloud with ir in place of rgb
   <node pkg="nodelet" type="nodelet" name="$(arg sensor_name)_points_xyziii"
         args="standalone depth_image_proc/point_cloud_xyzrgb"
         respawn="false">
