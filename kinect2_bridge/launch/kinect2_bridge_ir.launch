@@ -1,29 +1,5 @@
 <launch>
-<!--   <arg name="publish_frame" default="false" />
-  <arg name="sensor_id" default=""/> 
-  <arg name="sensor_name" default="kinect2_head" />
 
-  <include file="$(find kinect2_bridge)/launch/include/kinect2_frames.launch">
-    <arg name="publish_frame" value="$(arg publish_frame)" />
-    <arg name="camera" value="$(arg sensor_name)"/>
-  </include>
-
-  <node name="$(arg sensor_name)_kinect2_bridge" pkg="kinect2_bridge" type="kinect2_bridge" respawn="true" output="screen">
-    <param name="sensor_name" value="$(arg sensor_name)"/>
-    <param name="sensor_id" value="$(arg sensor_id)" type="str" />
-  </node>
-
-  <node pkg="nodelet" type="nodelet" name="$(arg sensor_name)_points_xyziii"
-        args="standalone depth_image_proc/point_cloud_xyzrgb"
-        respawn="false">
-    <remap from="rgb/camera_info"             to="/$(arg sensor_name)/ir_rect/camera_info" />
-    <remap from="rgb/image_rect_color"        to="/$(arg sensor_name)/ir_rect_eq/image" />
-    <remap from="depth_registered/image_rect" to="/$(arg sensor_name)/depth_rect/image" />
-    <remap from="depth_registered/points"     to="/$(arg sensor_name)/depth_ir/points" />
-    <param name="queue_size" type="int" value="2" />
-  </node>
- -->
-  
   <arg name="publish_frame" default="false" />
   <arg name="sensor_id" default=""/> 
   <arg name="sensor_name" default="kinect2_head" />
@@ -56,6 +32,11 @@
   <arg name="output"            default="screen"/>
 
   <machine name="localhost" address="localhost" if="$(arg use_machine)"/>
+
+  <include file="$(find kinect2_bridge)/launch/kinect2_frames.launch">
+    <arg name="publish_frame" value="$(arg publish_frame)" />
+    <arg name="camera" value="$(arg sensor_name)"/>
+  </include>
 
   <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager)" args="manager"
         if="$(arg start_manager)" machine="$(arg machine)" output="screen"/>
