@@ -1465,20 +1465,20 @@ private:
     tf::Vector3 vZero(0, 0, 0);
     tf::Transform tIr(rot, trans), tZero(qZero, vZero);
 
-    // stColorOpt = tf::StampedTransform(tZero, now, baseNameTF + K2_TF_LINK, baseNameTF + K2_TF_RGB_OPT_FRAME);
-    // stIrOpt = tf::StampedTransform(tIr, now, baseNameTF + K2_TF_RGB_OPT_FRAME, baseNameTF + K2_TF_IR_OPT_FRAME);
+     stColorOpt = tf::StampedTransform(tZero, now, baseNameTF + K2_TF_LINK, baseNameTF + K2_TF_RGB_OPT_FRAME);
+     stIrOpt = tf::StampedTransform(tIr, now, baseNameTF + K2_TF_RGB_OPT_FRAME, baseNameTF + K2_TF_IR_OPT_FRAME);
 
-    // for(; running && ros::ok();)
-    // {
-    //   now = ros::Time::now();
-    //   stColorOpt.stamp_ = now;
-    //   stIrOpt.stamp_ = now;
+     for(; running && ros::ok();)
+     {
+       now = ros::Time::now();
+       stColorOpt.stamp_ = now;
+       stIrOpt.stamp_ = now;
 
-    //   broadcaster.sendTransform(stColorOpt);
-    //   broadcaster.sendTransform(stIrOpt);
+       broadcaster.sendTransform(stColorOpt);
+       broadcaster.sendTransform(stIrOpt);
 
-    //   std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    // }
+       std::this_thread::sleep_for(std::chrono::milliseconds(10));
+     }
   }
 
   static inline void setThreadName(const std::string &name)
