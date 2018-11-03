@@ -1474,8 +1474,8 @@ private:
        stColorOpt.stamp_ = now;
        stIrOpt.stamp_ = now;
 
-       broadcaster.sendTransform(stColorOpt);
-       broadcaster.sendTransform(stIrOpt);
+       // broadcaster.sendTransform(stColorOpt);
+       // broadcaster.sendTransform(stIrOpt);
 
        std::this_thread::sleep_for(std::chrono::milliseconds(10));
      }
