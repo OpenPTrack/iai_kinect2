@@ -93,9 +93,11 @@ add_custom_target(additional_files_${PROJECT_NAME}
   ${FILES_LIST}
 )
 
+# ubuntu 16.04 if do not install cuda 8.0 ,we will not found CL/cl.cpp,so we add our's copy at last
 include_directories(include
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIR}
+  include/internal
 )
 
 if(DEPTH_REG_CPU)
