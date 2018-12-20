@@ -226,7 +226,7 @@ private:
     double fps_limit, maxDepth, minDepth;
     bool use_png, bilateral_filter, edge_aware_filter;
     int32_t jpeg_quality, png_level, queueSize, reg_dev, depth_dev, worker_threads , exposure_method; // exposure_method: 0 - AutoExposure  1 - SemiAutoExposure  2 - ManualExposure
-    float exposure_compensation, pseudo_exposure_time_ms, integration_time_ms, analog_gain;
+    double exposure_compensation, pseudo_exposure_time_ms, integration_time_ms, analog_gain;
     std::string depth_method, reg_method, calib_path, sensor, base_name;
 
     std::string depthDefault = "cpu";
