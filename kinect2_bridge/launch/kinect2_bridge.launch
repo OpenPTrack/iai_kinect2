@@ -1,7 +1,5 @@
 <launch>
 
-  <rosparam command="load" file="$(find kinect2_bridge)/conf/kinect2_bridge.yaml" />
-
   <arg name="base_name"         default="kinect2"/>
   <arg name="sensor"            default=""/>
   <arg name="publish_tf"        default="false"/>
@@ -62,6 +60,8 @@
     <param name="bilateral_filter"  type="bool"   value="$(arg bilateral_filter)"/>
     <param name="edge_aware_filter" type="bool"   value="$(arg edge_aware_filter)"/>
     <param name="worker_threads"    type="int"    value="$(arg worker_threads)"/>
+      <rosparam command="load" file="$(find kinect2_bridge)/conf/kinect2_bridge.yaml" />
+
   </node>
 
   <!-- Node version of kinect2_bridge -->
@@ -86,6 +86,8 @@
     <param name="bilateral_filter"  type="bool"   value="$(arg bilateral_filter)"/>
     <param name="edge_aware_filter" type="bool"   value="$(arg edge_aware_filter)"/>
     <param name="worker_threads"    type="int"    value="$(arg worker_threads)"/>
+      <rosparam command="load" file="$(find kinect2_bridge)/conf/kinect2_bridge.yaml" />
+
   </node>
 
   <!-- sd point cloud (512 x 424) -->
