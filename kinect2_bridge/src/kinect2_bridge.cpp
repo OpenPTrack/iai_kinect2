@@ -220,13 +220,16 @@ public:
     nh.shutdown();
   }
 
+  double exposure_compensation, pseudo_exposure_time_ms, integration_time_ms, analog_gain;
+  int exposure_method; // exposure_method: 0 - AutoExposure  1 - SemiAutoExposure  2 - ManualExposure
+  
 private:
   bool initialize()
   {
     double fps_limit, maxDepth, minDepth;
     bool use_png, bilateral_filter, edge_aware_filter;
-    int32_t jpeg_quality, png_level, queueSize, reg_dev, depth_dev, worker_threads , exposure_method; // exposure_method: 0 - AutoExposure  1 - SemiAutoExposure  2 - ManualExposure
-    double exposure_compensation, pseudo_exposure_time_ms, integration_time_ms, analog_gain;
+    int32_t jpeg_quality, png_level, queueSize, reg_dev, depth_dev, worker_threads;
+    // double exposure_compensation, pseudo_exposure_time_ms, integration_time_ms, analog_gain;
     std::string depth_method, reg_method, calib_path, sensor, base_name;
 
     std::string depthDefault = "cpu";
@@ -609,15 +612,15 @@ private:
     // double integration_time_ms = Kinect2Bridge::get_integration_time_ms();
     // double analog_gain = Kinect2Bridge::get_analog_gain();
 
-    switch(Kinect2Bridge::exposure_method) {
+    switch(exposure_method) {
       case 0  :
-          device->setColorAutoExposure(Kinect2Bridge::exposure_compensation);
+          device->setColorAutoExposure(exposure_compensation);
           break;
       case 1  :
-          device->setColorSemiAutoExposure( Kinect2Bridge::pseudo_exposure_time_ms);
+          device->setColorSemiAutoExposure(pseudo_exposure_time_ms);
           break;
       case 2  :
-          device->setColorManualExposure( Kinect2Bridge::integration_time_ms,  Kinect2Bridge::analog_gain);
+          device->setColorManualExposure( integration_time_ms,  analog_gain);
           break; 
       default : 
           device->setColorAutoExposure(0);
