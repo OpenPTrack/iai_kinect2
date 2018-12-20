@@ -300,7 +300,7 @@ private:
              << "exposure_compensation" FG_CYAN << exposure_compensation << NO_COLOR << std::endl   
              << "pseudo_exposure_time_ms" FG_CYAN << pseudo_exposure_time_ms << NO_COLOR << std::endl
              << "pseudo_exposure_time_ms" FG_CYAN << pseudo_exposure_time_ms << NO_COLOR << std::endl
-             << "integration_time_ms" FG_CYAN << integration_time_ms << NO_COLOR << std::endl 
+             << "integration_time_ms" FG_CYAN << integration_time_ms << NO_COLOR << std::endl );
 
 
     deltaT = fps_limit > 0 ? 1.0 / fps_limit : 0.0;
@@ -342,26 +342,6 @@ private:
 
     return true;
   }
-
-  // int get_exposure_method(){
-  //   return exposure_method;
-  // }
-
-  // double get_exposure_compensation(){
-  //   return exposure_compensation;
-  // }
-
-  // double get_pseudo_exposure_time_ms(){
-  //   return pseudo_exposure_time_ms;
-  // }
-
-  // double get_integration_time_ms(){
-  //   return integration_time_ms;
-  // }
-
-  // double get_analog_gain(){
-  //   return analog_gain;
-  // }
 
   bool initRegistration(const std::string &method, const int32_t device, const double maxDepth)
   {
