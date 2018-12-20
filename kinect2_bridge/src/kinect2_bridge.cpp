@@ -612,18 +612,24 @@ private:
     // double integration_time_ms = Kinect2Bridge::get_integration_time_ms();
     // double analog_gain = Kinect2Bridge::get_analog_gain();
 
+        OUT_INFO("exposure_method" << exposure_method);    
+        OUT_INFO("exposure_compensation" << exposure_compensation);    
+        OUT_INFO("pseudo_exposure_time_ms" << pseudo_exposure_time_ms);    
+        OUT_INFO("pseudo_exposure_time_ms" << pseudo_exposure_time_ms);    
+        OUT_INFO("integration_time_ms" << integration_time_ms);    
+
     switch(exposure_method) {
       case 0  :
-          device->setColorAutoExposure(exposure_compensation);
+          device->setColorAutoExposure(float(exposure_compensation));
           break;
       case 1  :
-          device->setColorSemiAutoExposure(pseudo_exposure_time_ms);
+          device->setColorSemiAutoExposure(float(pseudo_exposure_time_ms));
           break;
       case 2  :
-          device->setColorManualExposure( integration_time_ms,  analog_gain);
+          device->setColorManualExposure( float(integration_time_ms),  float(analog_gain));
           break; 
       default : 
-          device->setColorAutoExposure(0);
+          device->setColorAutoExposure(0.0);
     }
 
     colorParams = device->getColorCameraParams();
