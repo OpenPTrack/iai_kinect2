@@ -220,26 +220,6 @@ public:
     nh.shutdown();
   }
 
-  int get_exposure_method(){
-    return exposure_method;
-  }
-
-  float get_exposure_compensation(){
-    return exposure_compensation;
-  }
-
-  float get_pseudo_exposure_time_ms(){
-    return pseudo_exposure_time_ms;
-  }
-
-  float get_integration_time_ms(){
-    return integration_time_ms;
-  }
-
-  float get_analog_gain(){
-    return analog_gain;
-  }
-
 private:
   bool initialize()
   {
@@ -353,6 +333,26 @@ private:
     initTopics(queueSize, base_name);
 
     return true;
+  }
+
+  int get_exposure_method(){
+    return exposure_method;
+  }
+
+  float get_exposure_compensation(){
+    return exposure_compensation;
+  }
+
+  float get_pseudo_exposure_time_ms(){
+    return pseudo_exposure_time_ms;
+  }
+
+  float get_integration_time_ms(){
+    return integration_time_ms;
+  }
+
+  float get_analog_gain(){
+    return analog_gain;
   }
 
   bool initRegistration(const std::string &method, const int32_t device, const double maxDepth)
