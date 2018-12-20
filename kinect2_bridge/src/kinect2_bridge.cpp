@@ -220,12 +220,33 @@ public:
     nh.shutdown();
   }
 
+  int get_exposure_method(){
+    return get_exposure_method;
+  }
+
+  float get_exposure_compensation(){
+    return get_exposure_compensation;
+  }
+
+  float get_pseudo_exposure_time_ms(){
+    return get_pseudo_exposure_time_ms;
+  }
+
+  float get_integration_time_ms(){
+    return get_integration_time_ms;
+  }
+
+  float get_analog_gain(){
+    return get_analog_gain;
+  }
+
 private:
   bool initialize()
   {
     double fps_limit, maxDepth, minDepth;
     bool use_png, bilateral_filter, edge_aware_filter;
-    int32_t jpeg_quality, png_level, queueSize, reg_dev, depth_dev, worker_threads;
+    int32_t jpeg_quality, png_level, queueSize, reg_dev, depth_dev, worker_threads , exposure_method; // exposure_method: 0 - AutoExposure  1 - SemiAutoExposure  2 - ManualExposure
+    float exposure_compensation, pseudo_exposure_time_ms, integration_time_ms, analog_gain;
     std::string depth_method, reg_method, calib_path, sensor, base_name;
 
     std::string depthDefault = "cpu";
@@ -263,6 +284,12 @@ private:
     priv_nh.param("publish_tf", publishTF, false);
     priv_nh.param("base_name_tf", baseNameTF, base_name);
     priv_nh.param("worker_threads", worker_threads, 4);
+    priv_nh.param("exposure_method" , exposure_method , 0);
+    priv_nh.param("exposure_compensation",  exposure_compensation , 0.0);
+    priv_nh.param("pseudo_exposure_time_ms", pseudo_exposure_time_ms , 33.0);
+    priv_nh.param("integration_time_ms",  integration_time_ms , 33.0);
+    priv_nh.param("analog_gain",  analog_gain , 2.0);
+
 
     worker_threads = std::max(1, worker_threads);
     threads.resize(worker_threads);
@@ -574,7 +601,27 @@ private:
     }
 
     OUT_INFO("device serial: " FG_CYAN << sensor << NO_COLOR);
-    OUT_INFO("device firmware: " FG_CYAN << device->getFirmwareVersion() << NO_COLOR);
+    OUT_INFO("device firmware: " FG_CYAN << device->getFirmwareVersion() << NO_COLOR);    
+
+    int exposure_method = Kinect2Bridge::get_exposure_method();
+    float exposure_compensation = Kinect2Bridge::get_exposure_compensation();
+    float pseudo_exposure_time_ms = Kinect2Bridge::get_pseudo_exposure_time_ms();
+    float integration_time_ms = Kinect2Bridge::get_integration_time_ms();
+    float analog_gain = Kinect2Bridge::get_analog_gain();
+
+    switch(exposure_method) {
+      case 0  :
+          setColorAutoExposure(exposure_compensation);
+          break;
+      case 1  :
+          setColorSemiAutoExposure( pseudo_exposure_time_ms);
+          break;
+      case 2  :
+          setColorManualExposure( integration_time_ms,  analog_gain);
+          break; 
+      default : 
+          setColorAutoExposure(0);
+    }
 
     colorParams = device->getColorCameraParams();
     irParams = device->getIrCameraParams();
