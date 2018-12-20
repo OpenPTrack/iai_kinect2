@@ -611,16 +611,16 @@ private:
 
     switch(exposure_method) {
       case 0  :
-          setColorAutoExposure(exposure_compensation);
+          device->setColorAutoExposure(exposure_compensation);
           break;
       case 1  :
-          setColorSemiAutoExposure( pseudo_exposure_time_ms);
+          device->setColorSemiAutoExposure( pseudo_exposure_time_ms);
           break;
       case 2  :
-          setColorManualExposure( integration_time_ms,  analog_gain);
+          device->setColorManualExposure( integration_time_ms,  analog_gain);
           break; 
       default : 
-          setColorAutoExposure(0);
+          device->setColorAutoExposure(0);
     }
 
     colorParams = device->getColorCameraParams();
