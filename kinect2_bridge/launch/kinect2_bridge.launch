@@ -1,5 +1,7 @@
 <launch>
 
+  <rosparam command="load" file="$(find kinect2_bridge)/conf/kinect2_bridge.yaml" />
+
   <arg name="base_name"         default="kinect2"/>
   <arg name="sensor"            default=""/>
   <arg name="publish_tf"        default="false"/>
