@@ -335,25 +335,25 @@ private:
     return true;
   }
 
-  int get_exposure_method(){
-    return exposure_method;
-  }
+  // int get_exposure_method(){
+  //   return exposure_method;
+  // }
 
-  float get_exposure_compensation(){
-    return exposure_compensation;
-  }
+  // double get_exposure_compensation(){
+  //   return exposure_compensation;
+  // }
 
-  float get_pseudo_exposure_time_ms(){
-    return pseudo_exposure_time_ms;
-  }
+  // double get_pseudo_exposure_time_ms(){
+  //   return pseudo_exposure_time_ms;
+  // }
 
-  float get_integration_time_ms(){
-    return integration_time_ms;
-  }
+  // double get_integration_time_ms(){
+  //   return integration_time_ms;
+  // }
 
-  float get_analog_gain(){
-    return analog_gain;
-  }
+  // double get_analog_gain(){
+  //   return analog_gain;
+  // }
 
   bool initRegistration(const std::string &method, const int32_t device, const double maxDepth)
   {
@@ -603,11 +603,11 @@ private:
     OUT_INFO("device serial: " FG_CYAN << sensor << NO_COLOR);
     OUT_INFO("device firmware: " FG_CYAN << device->getFirmwareVersion() << NO_COLOR);    
 
-    int exposure_method = Kinect2Bridge::get_exposure_method();
-    float exposure_compensation = Kinect2Bridge::get_exposure_compensation();
-    float pseudo_exposure_time_ms = Kinect2Bridge::get_pseudo_exposure_time_ms();
-    float integration_time_ms = Kinect2Bridge::get_integration_time_ms();
-    float analog_gain = Kinect2Bridge::get_analog_gain();
+    // int exposure_method = exposure_method;
+    // double exposure_compensation = exposure_compensation;
+    // double pseudo_exposure_time_ms = Kinect2Bridge::get_pseudo_exposure_time_ms();
+    // double integration_time_ms = Kinect2Bridge::get_integration_time_ms();
+    // double analog_gain = Kinect2Bridge::get_analog_gain();
 
     switch(exposure_method) {
       case 0  :
