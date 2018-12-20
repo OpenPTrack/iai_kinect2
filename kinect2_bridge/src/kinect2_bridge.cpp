@@ -273,7 +273,6 @@ private:
     priv_nh.param("integration_time_ms",  integration_time_ms , 33.0);
     priv_nh.param("analog_gain",  analog_gain , 2.0);
 
-
     worker_threads = std::max(1, worker_threads);
     threads.resize(worker_threads);
 
@@ -296,7 +295,13 @@ private:
              << "edge_aware_filter: " FG_CYAN << (edge_aware_filter ? "true" : "false") << NO_COLOR << std::endl
              << "       publish_tf: " FG_CYAN << (publishTF ? "true" : "false") << NO_COLOR << std::endl
              << "     base_name_tf: " FG_CYAN << baseNameTF << NO_COLOR << std::endl
-             << "   worker_threads: " FG_CYAN << worker_threads << NO_COLOR);
+             << "   worker_threads: " FG_CYAN << worker_threads << NO_COLOR << std::endl
+             << "exposure_method" FG_CYAN << exposure_method << NO_COLOR << std::endl 
+             << "exposure_compensation" FG_CYAN << exposure_compensation << NO_COLOR << std::endl   
+             << "pseudo_exposure_time_ms" FG_CYAN << pseudo_exposure_time_ms << NO_COLOR << std::endl
+             << "pseudo_exposure_time_ms" FG_CYAN << pseudo_exposure_time_ms << NO_COLOR << std::endl
+             << "integration_time_ms" FG_CYAN << integration_time_ms << NO_COLOR << std::endl 
+
 
     deltaT = fps_limit > 0 ? 1.0 / fps_limit : 0.0;
 
@@ -611,12 +616,6 @@ private:
     // double pseudo_exposure_time_ms = Kinect2Bridge::get_pseudo_exposure_time_ms();
     // double integration_time_ms = Kinect2Bridge::get_integration_time_ms();
     // double analog_gain = Kinect2Bridge::get_analog_gain();
-
-        OUT_INFO("exposure_method" << exposure_method);    
-        OUT_INFO("exposure_compensation" << exposure_compensation);    
-        OUT_INFO("pseudo_exposure_time_ms" << pseudo_exposure_time_ms);    
-        OUT_INFO("pseudo_exposure_time_ms" << pseudo_exposure_time_ms);    
-        OUT_INFO("integration_time_ms" << integration_time_ms);    
 
     switch(exposure_method) {
       case 0  :
