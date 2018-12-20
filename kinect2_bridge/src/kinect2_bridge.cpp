@@ -221,23 +221,23 @@ public:
   }
 
   int get_exposure_method(){
-    return get_exposure_method;
+    return exposure_method;
   }
 
   float get_exposure_compensation(){
-    return get_exposure_compensation;
+    return exposure_compensation;
   }
 
   float get_pseudo_exposure_time_ms(){
-    return get_pseudo_exposure_time_ms;
+    return pseudo_exposure_time_ms;
   }
 
   float get_integration_time_ms(){
-    return get_integration_time_ms;
+    return integration_time_ms;
   }
 
   float get_analog_gain(){
-    return get_analog_gain;
+    return analog_gain;
   }
 
 private:
